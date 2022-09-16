@@ -1,4 +1,5 @@
-import React from "react"
+import React from "react";
+import NavLink from "react-router-dom";
 
 export default function Header () {
 
@@ -6,7 +7,7 @@ export default function Header () {
         <div>
             <header>
                 <div>
-                    Header comp
+                    <NavLink className="btn" to="/Profile">Profile</NavLink>
                 </div>
             </header>
         </div>
