@@ -1,13 +1,14 @@
 import React from "react";
-import NavLink from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import '../styles/index.css'
 
 export default function Header () {
 
     return (
-        <div>
+        <div className="header">
             <header>
                 <div>
-                    <NavLink className="btn" to="/Profile">Profile</NavLink>
+                    <NavLink to="/Profile">Profile</NavLink>
                 </div>
             </header>
         </div>
