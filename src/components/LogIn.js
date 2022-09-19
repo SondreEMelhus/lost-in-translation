@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react"
-import UserDatabase from "./Userdatabase"
-import Translator from "./Translator";
 import { Navigate } from "react-router-dom";
-import { fetchUser } from "./LoginHandler";
+import { fetchUser } from "./UserHandler";
 import '../styles/LogIn.css'
 
 export default function LogIn () {
