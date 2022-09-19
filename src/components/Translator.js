@@ -145,7 +145,7 @@ export default function Translator () {
                 <form onSubmit={handleSubmit}>
                     <label>
                     <input
-                        className="inputBox"
+                        className="inputText"
                         type="text" 
                         value={text}
                         placeholder="Translate"
