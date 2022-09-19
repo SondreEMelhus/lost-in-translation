@@ -18,8 +18,8 @@ export default function LogIn () {
         fetch(`${apiURL}/translations?username=${username}`)
             .then(response => response.json())
             .then(results => {
-                console.log(results);
-                if (results[0].username != null) {
+                console.log(results.length);
+                if (results.length != 0) {
                     updateUser(results[0].username);
                     updateUserURL(`/translations?username=${username}`)
                     setLoginState(true);
