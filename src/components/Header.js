@@ -17,7 +17,7 @@ export default function Header () {
     return (
         <div className="header">
             <div className="titleAndLogo">
-                    <NavLink to="/Translate">
+                    <NavLink to="/Translator">
                     <img src={logo} className="headerLogo" alt="logo"/>
                     </NavLink>
                     <div className="headerTitle">
