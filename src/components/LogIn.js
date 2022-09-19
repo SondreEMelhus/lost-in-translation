@@ -11,11 +11,9 @@ export default function LogIn () {
     const [loginState, setLoginState] = useState(false);
     const [userURL, setUserURL] = useState('');
 
-    const database = new UserDatabase();
-
     const handleLogin = async (username) => {
 
-        const apiURL = 'https://lost-in-translation2.herokuapp.com/'
+        const apiURL = 'https://assignment2-sign-translator.herokuapp.com'
 
         fetch(`${apiURL}/translations?username=${username}`)
             .then(response => response.json())
@@ -36,7 +34,7 @@ export default function LogIn () {
     }
 
     const addUser = async (username) => {
-        const apiURL = 'https://lost-in-translation2.herokuapp.com/'
+        const apiURL = 'https://assignment2-sign-translator.herokuapp.com'
         const apiKey = 'chAFe94loBrDpnPps1dbnhPEYrMVVvHlmjkC3eTCBVH5gUim9Yquv7XdkS1Jvrkn'
 
         fetch(`${apiURL}/translations`, {
