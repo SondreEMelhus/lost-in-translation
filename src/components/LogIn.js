@@ -21,16 +21,18 @@ export default function LogIn () {
         fetch(`${apiURL}/translations?username=${username}`)
             .then(response => response.json())
             .then(results => {
-                updateUser(results);
-                updateUserURL(`/translations?username=${username}`)
-                console.log(user);
-                console.log(userURL);
+                if (results[0].usernmae != null) {
+                    updateUser(results[0].username);
+                    updateUserURL(`/translations?username=${username}`)
+                    setLoginState(true);
+                    console.log(user);
+                    console.log(userURL);
+                } else {
+                    addUser(username);
+                }
             })
             .catch(error => {
             })
-        if (results == {}) {
-            addUser(username);
-        }
     }
 
     const addUser = async (username) => {
@@ -55,10 +57,12 @@ export default function LogIn () {
             return response.json()
             })
             .then(newUser => {
+                console.log('New user begin created');
                 updateUser(username);
                 updateUserURL(`/translations?username=${username}`);
                 console.log(user);
                 console.log(userURL);
+                setLoginState(true);
             })
             .catch(error => {
             })
