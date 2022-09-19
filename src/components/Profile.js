@@ -4,14 +4,7 @@ import '../styles/Profile.css'
 export default function Profile () {
 
     const [user, setUser] = useState({});
-    const [history, setHistory] = useState([{
-        id : 1,
-        content : "Lorem ipsum"
-    },
-    {
-        id : 2,
-        content : "Ipsum lorem"
-    }])
+    const [history, setHistory] = useState([])
 
     /*
     //Method used to change the state of locations and add a new location to the array
@@ -21,11 +14,12 @@ export default function Profile () {
     */
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('user'));
-        if (user) {
-        setUser(user);
+        const userInfo = JSON.parse(localStorage.getItem('user'));
+        if (userInfo) {
+         setUser(userInfo);
+         setHistory(userInfo.translations)
         }
-    },[]);
+      }, []);
 
     const handleLogOut = () => {
         alert('Logging out (Not rly)')
@@ -33,7 +27,7 @@ export default function Profile () {
 
     const removeTranslation = (event) => {
         console.log(event.target.value);
-        const newListOfTranslations = history.filter(translation => translation.id != event.target.value);
+        const newListOfTranslations = history.filter(translation => translation != event.target.value);
         setHistory(newListOfTranslations);
     }
 
@@ -47,7 +41,7 @@ export default function Profile () {
                 </div>
                 <div className="user-tab">
                     <div className="user-item">
-                        <p>Name: {user.name}</p>
+                        <p>Name: {user.username} </p>
                         <button onClick={handleLogOut}>Log out</button>
                     </div>
                 </div>
@@ -61,11 +55,11 @@ export default function Profile () {
                 <div className="history-tab">
                     {history.map((translation, i) => {
                         return (
-                            <div className="history-item" key={translation.id}>
+                            <div className="history-item" key={i+ 1}>
                                 <div className="translation-grid">
-                                    <div className='translation-nr'>{i+1 + '.'}</div>
-                                    <div>{translation.content}</div>
-                                    <button onClick={removeTranslation} value={translation.id} className='translation-button'>x</button>
+                                    <div className='translation-nr'>{i + 1 + '.'}</div>
+                                    <div>{translation}</div>
+                                    <button onClick={removeTranslation} value={translation} className='translation-button'>x</button>
                                 </div>
                             </div>
                         )
