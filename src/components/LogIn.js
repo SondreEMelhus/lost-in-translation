@@ -14,14 +14,14 @@ export default function LogIn () {
     const database = new UserDatabase();
 
     const handleLogin = async (username) => {
-        let results = {}
 
-        const apiURL = 'https://assignment2-sign-translator.herokuapp.com'
+        const apiURL = 'https://lost-in-translation2.herokuapp.com/'
 
         fetch(`${apiURL}/translations?username=${username}`)
             .then(response => response.json())
             .then(results => {
-                if (results[0].usernmae != null) {
+                console.log(results);
+                if (results[0].username != null) {
                     updateUser(results[0].username);
                     updateUserURL(`/translations?username=${username}`)
                     setLoginState(true);
@@ -36,7 +36,7 @@ export default function LogIn () {
     }
 
     const addUser = async (username) => {
-        const apiURL = 'https://assignment2-sign-translator.herokuapp.com'
+        const apiURL = 'https://lost-in-translation2.herokuapp.com/'
         const apiKey = 'chAFe94loBrDpnPps1dbnhPEYrMVVvHlmjkC3eTCBVH5gUim9Yquv7XdkS1Jvrkn'
 
         fetch(`${apiURL}/translations`, {
