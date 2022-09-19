@@ -49,7 +49,7 @@ const addUser = async (username) => {
 }
 
 //Update a users translations(you need to provide a array of translations)
-const updateUser = async (userId, newTranslations) => {
+export const updateUser = async (userId, newTranslations) => {
   const apiURL = 'https://assignment2-sign-translator.herokuapp.com'
   const apiKey = 'chAFe94loBrDpnPps1dbnhPEYrMVVvHlmjkC3eTCBVH5gUim9Yquv7XdkS1Jvrkn'
 
