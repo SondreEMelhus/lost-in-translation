@@ -1,5 +1,6 @@
 import { useState } from "react"
 import '../styles/index.css'
+import '../styles/Translator.css'
 import a from '../assets/individial_signs/a.png'
 import b from '../assets/individial_signs/b.png'
 import c from '../assets/individial_signs/c.png'
@@ -31,33 +32,25 @@ export default function Translator () {
 
     /*
     const apiURL = 'https://assignment2-sign-translator.herokuapp.com'
-    const username = 'dewaldels'
-
-    fetch(`${apiURL}/translations?username=${username}`)
-        .then(response => response.json())
-        .then(results => {
-            console.log(results);
-        })
-        .catch(error => {
-    })*/
+    */
 
     const [text, translateText] = useState("");
     
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        //alert(`The text you want to translate is: ${text}`); {/*remove this line when done with testing */}
+        var imageParent = document.getElementById("translationBox");
+        imageParent.innerHTML = ""; // removes any previous translation elements
         for (let char of text) {
-            // TODO check if it is a valid character first
             // TODO deal with whitespaces
-            char = char.toLowerCase();
-            var image = document.createElement("img");
-            var imageParent = document.getElementById("translationBox");
-            console.log(char);
-            console.log({char});
-            image.setAttribute("alt", char);
-            image.setAttribute("src", getImgPath(char));
-            imageParent.appendChild(image);
+            if (char.toLowerCase() != char.toUpperCase()) { // checks if the character is a letter
+                char = char.toLowerCase();
+                var image = document.createElement("img");
+                image.setAttribute("alt", char);
+                image.setAttribute("src", getImgPath(char));
+                image.setAttribute("className", "signImage");
+                imageParent.appendChild(image);
+            }
         }
       }
 
@@ -147,11 +140,12 @@ export default function Translator () {
     }
 
     return (
-        <div>
-            <div>
+        <div className="grid-container">
+            <div className="grid-item">
                 <form onSubmit={handleSubmit}>
                     <label>
-                    <input 
+                    <input
+                        className="inputBox"
                         type="text" 
                         value={text}
                         placeholder="Translate"
@@ -161,9 +155,7 @@ export default function Translator () {
                     <input type="submit" />
                 </form>
             </div>
-            <div id="translationBox">
-                <img src={a} alt="BigCo Inc. logo"/>
-            </div>
+            <div className="grid-item" id="translationBox"></div>
         </div>
     )
 }
