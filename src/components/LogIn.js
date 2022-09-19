@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import UserDatabase from "./Userdatabase"
+import Translator from "./Translator";
 import { Navigate } from "react-router-dom";
 import '../styles/LogIn.css'
 

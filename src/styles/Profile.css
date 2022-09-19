@@ -1,0 +1,67 @@
+.profile-title {
+    text-align: center;
+}
+
+.profile-container {
+    display: grid;
+    grid-template-columns: 55% auto;
+    margin-top: 5%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.profile-item {
+
+}
+
+.user-tab {
+    display: grid;
+}
+
+.user-item {
+    margin-top: 1%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.history-tab {
+    display: grid;
+    padding-top: 4%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 3%;
+    border: 2px solid rgb(91, 83, 83);
+    border-radius: 5px;
+
+}
+
+.history-item {
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border: 2px solid rgb(91, 83, 83);
+    border-radius: 5px;
+    text-align: left;
+}
+
+.translation-grid {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+}
+
+.translation-nr {
+    margin-left: 5px;
+}
+
+.translation-button {
+    width: 60%;
+    align-content: right;
+    background-color: white;
+    border: 1px solid white;
+    margin-left: auto;
+}
