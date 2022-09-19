@@ -9,10 +9,9 @@ export default function LogIn () {
     const [username, setUsername] = useState('');
     const [user, setUser] = useState({});
     const [loginState, setLoginState] = useState(false);
-    const [userURL, setUserURL] = useState('');
 
     useEffect(() => {
-        localStorage.setItem('user', user);
+        localStorage.setItem('user', JSON.stringify(user));
        }, [user]);
 
     const handleLogin = async (username) => {
@@ -25,7 +24,6 @@ export default function LogIn () {
                 console.log(results.length);
                 if (results.length != 0) {
                     updateUser(results);
-                    console.log(user.name);
                     setLoginState(true);
                 } else {
                     addUser(username);
