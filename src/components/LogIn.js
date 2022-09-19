@@ -90,7 +90,7 @@ export default function LogIn () {
                             <button type="submit">Log in</button>
                         </div>
                     </form>
-                    {loginState && (<Navigate to={userURL} replace={true} />
+                    {loginState && (<Navigate to='/Translator' replace={true} />
                     )}
                 </div>
             </div>
