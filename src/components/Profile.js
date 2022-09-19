@@ -22,7 +22,7 @@ export default function Profile () {
 
     useEffect(() => {
         setUser(localStorage.getItem('user'));
-       });
+       },[]);
 
     const handleLogOut = () => {
         alert('Logging out (Not rly)')
