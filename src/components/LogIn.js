@@ -25,6 +25,8 @@ export default function LogIn () {
         if (results != null) {
             updateUser(results);
             updateUserURL(results);
+            console.log(user);
+            console.log(userURL);
         } else {
             addUser(username);
         }
@@ -54,6 +56,8 @@ export default function LogIn () {
             .then(newUser => {
                 updateUser(newUser);
                 updateUserURL(newUser);
+                console.log(user);
+                console.log(userURL);
             })
             .catch(error => {
             })
