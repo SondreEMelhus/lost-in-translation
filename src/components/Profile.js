@@ -21,8 +21,11 @@ export default function Profile () {
     */
 
     useEffect(() => {
-        setUser(localStorage.getItem('user'));
-       },[]);
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+        setUser(user);
+        }
+    },[]);
 
     const handleLogOut = () => {
         alert('Logging out (Not rly)')
