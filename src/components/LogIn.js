@@ -25,6 +25,7 @@ export default function LogIn () {
                 console.log(results.length);
                 if (results.length != 0) {
                     updateUser(results);
+                    console.log(user.name);
                     setLoginState(true);
                 } else {
                     addUser(username);
