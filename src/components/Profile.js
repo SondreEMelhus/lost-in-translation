@@ -1,8 +1,9 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import '../styles/Profile.css'
 
 export default function Profile () {
 
+    const [user, setUser] = useState({});
     const [history, setHistory] = useState([{
         id : 1,
         content : "Lorem ipsum"
@@ -18,6 +19,13 @@ export default function Profile () {
         setTranslations((translations) => [newTranslations, ...translation]);
     };
     */
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+        setUser(user);
+        }
+    },[]);
 
     const handleLogOut = () => {
         alert('Logging out (Not rly)')
@@ -39,7 +47,7 @@ export default function Profile () {
                 </div>
                 <div className="user-tab">
                     <div className="user-item">
-                        <p>Name: test</p>
+                        <p>Name: {user.name}</p>
                         <button onClick={handleLogOut}>Log out</button>
                     </div>
                 </div>

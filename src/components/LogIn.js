@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import UserDatabase from "./Userdatabase"
 import Translator from "./Translator";
 import { Navigate } from "react-router-dom";
@@ -9,7 +9,10 @@ export default function LogIn () {
     const [username, setUsername] = useState('');
     const [user, setUser] = useState({});
     const [loginState, setLoginState] = useState(false);
-    const [userURL, setUserURL] = useState('');
+
+    useEffect(() => {
+        localStorage.setItem('user', JSON.stringify(user));
+       }, [user]);
 
     const handleLogin = async (username) => {
 
@@ -20,11 +23,8 @@ export default function LogIn () {
             .then(results => {
                 console.log(results.length);
                 if (results.length != 0) {
-                    updateUser(results[0].username);
-                    updateUserURL(`/translations?username=${username}`)
+                    updateUser(results);
                     setLoginState(true);
-                    console.log(user);
-                    console.log(userURL);
                 } else {
                     addUser(username);
                 }
@@ -56,18 +56,11 @@ export default function LogIn () {
             })
             .then(newUser => {
                 console.log('New user begin created');
-                updateUser(username);
-                updateUserURL(`/translations?username=${username}`);
-                console.log(user);
-                console.log(userURL);
+                updateUser(newUser);
                 setLoginState(true);
             })
             .catch(error => {
             })
-    }
-
-    const updateUserURL = (newUrl) => {
-        setUserURL(newUrl);
     }
 
     const updateUser = (newUser) => {
@@ -96,7 +89,7 @@ export default function LogIn () {
                             <button type="submit">Log in</button>
                         </div>
                     </form>
-                    {loginState && (<Navigate to={userURL} replace={true} />
+                    {loginState && (<Navigate to='/Translator' replace={true} />
                     )}
                 </div>
             </div>
