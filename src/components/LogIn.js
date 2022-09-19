@@ -23,7 +23,7 @@ export default function LogIn () {
             .then(results => {
                 console.log(results.length);
                 if (results.length != 0) {
-                    updateUser(results);
+                    setUser(JSON.parse(results));
                     setLoginState(true);
                 } else {
                     addUser(username);
@@ -56,15 +56,11 @@ export default function LogIn () {
             })
             .then(newUser => {
                 console.log('New user begin created');
-                updateUser(newUser);
+                setUser(newUser);
                 setLoginState(true);
             })
             .catch(error => {
             })
-    }
-
-    const updateUser = (newUser) => {
-        setUser(newUser);
     }
 
     const handleSubmit = event => {
