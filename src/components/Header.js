@@ -10,21 +10,23 @@ export default function Header () {
     function getUser(){
         return "Sondre";
     }
-    function getLength(){
-        return ((getUser().length)*10+10).toString()+"px";
+    function getUserWidth(){
+        return ((getUser().length)*8+30).toString()+"px";
     }
 
     return (
         <div className="header">
-                    <div>
+            <div className="titleAndLogo">
+                    <NavLink to="/Translate">
                     <img src={logo} className="headerLogo" alt="logo"/>
-                    </div>
+                    </NavLink>
                     <div className="headerTitle">
                         <h1>Lost in translation</h1>
                     </div>
+            </div>
                     <div className="headerProfileLink">
                         <NavLink className="profileLink" to="/Profile">
-                            <p className="profileText" style={{width: getLength()}} >{getUser()}</p>
+                            <p className="profileText" style={{width: getUserWidth()}} >{getUser()}</p>
                             <img src={profileLogo} className="profileImage" alt="logo"/>
                         </NavLink>
                     </div>
