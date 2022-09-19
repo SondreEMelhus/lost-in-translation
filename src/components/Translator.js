@@ -48,7 +48,8 @@ export default function Translator () {
                 var image = document.createElement("img");
                 image.setAttribute("alt", char);
                 image.setAttribute("src", getImgPath(char));
-                image.setAttribute("className", "signImage");
+                //image.setAttribute("className", "signImage");
+                image.className = "signImage";
                 imageParent.appendChild(image);
             }
         }
@@ -152,7 +153,7 @@ export default function Translator () {
                         onChange={(e) => translateText(e.target.value)}
                     />
                     </label>
-                    <input type="submit" />
+                    <input type="submit" className="standardButton" value="Submit"/>
                 </form>
             </div>
             <div className="grid-item" id="translationBox"></div>
