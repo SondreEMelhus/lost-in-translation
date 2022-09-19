@@ -1,0 +1,16 @@
+.footer{
+    bottom:0;
+    left: 0;
+    right: 0;
+    position:fixed;
+    height: 30px;
+    background-color: var(--primaryColor);
+    display: flex;
+    justify-content: end;
+}
+.footerText{
+    margin-right: 30px;
+    margin-top: 5px;
+    font-family:'Love Ya Like A Sister', cursive;
+    font-weight: bold;
+}

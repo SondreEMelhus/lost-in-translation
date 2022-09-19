@@ -1,13 +1,14 @@
 import React from "react"
 import '../styles/index.css'
+import '../styles/Footer.css'
 
 export default function Footer () {
 
     return (
-        <div>
+        <div className="footer">
             <footer>
-                <div>
-                    Footer comp
+                <div className="footerText">
+                    by Karoline Øijorden, Sondre Melhus and Vegard Gunarson
                 </div>
             </footer>
         </div>
