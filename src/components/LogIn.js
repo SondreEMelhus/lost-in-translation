@@ -7,28 +7,80 @@ import '../styles/LogIn.css'
 export default function LogIn () {
 
     const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [user, setUser] = useState({});
     const [loginState, setLoginState] = useState(false);
+    const [userURL, setUserURL] = useState('');
 
-    const database = new UserDatabase();
+    const handleLogin = async (username) => {
+
+        const apiURL = 'https://assignment2-sign-translator.herokuapp.com'
+
+        fetch(`${apiURL}/translations?username=${username}`)
+            .then(response => response.json())
+            .then(results => {
+                console.log(results);
+                if (results[0].username != null) {
+                    updateUser(results[0].username);
+                    updateUserURL(`/translations?username=${username}`)
+                    setLoginState(true);
+                    console.log(user);
+                    console.log(userURL);
+                } else {
+                    addUser(username);
+                }
+            })
+            .catch(error => {
+            })
+    }
+
+    const addUser = async (username) => {
+        const apiURL = 'https://assignment2-sign-translator.herokuapp.com'
+        const apiKey = 'chAFe94loBrDpnPps1dbnhPEYrMVVvHlmjkC3eTCBVH5gUim9Yquv7XdkS1Jvrkn'
+
+        fetch(`${apiURL}/translations`, {
+                method: 'POST',
+                headers: {
+                'X-API-Key': apiKey,
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    username: `${username}`, 
+                    translations: [] 
+                })
+            })
+            .then(response => {
+            if (!response.ok) {
+                throw new Error('Could not create new user')
+            }
+            return response.json()
+            })
+            .then(newUser => {
+                console.log('New user begin created');
+                updateUser(username);
+                updateUserURL(`/translations?username=${username}`);
+                console.log(user);
+                console.log(userURL);
+                setLoginState(true);
+            })
+            .catch(error => {
+            })
+    }
+
+    const updateUserURL = (newUrl) => {
+        setUserURL(newUrl);
+    }
+
+    const updateUser = (newUser) => {
+        setUser(newUser);
+    }
 
     const handleSubmit = event => {
         event.preventDefault();
-
-        if (database.checkForUserInDatabase(username, password)) {
-            setLoginState(true);
-
-        } else {
-            alert('Invalid user credentials') 
-        }
+        handleLogin(username);
     }
 
     const handleUserChange = (event) => {
         setUsername(event.target.value);
-    }
-
-    const handlePassChange = (event) => {
-        setPassword(event.target.value)
     }
 
     return (
@@ -41,13 +93,10 @@ export default function LogIn () {
                             <input type="text" placeholder='Username' onChange={handleUserChange}></input>  
                         </div>
                         <div className="grid-item">
-                            <input type="password" placeholder='Password' onChange={handlePassChange}></input>
-                        </div>
-                        <div className="grid-item">
                             <button type="submit">Log in</button>
                         </div>
                     </form>
-                    {loginState && (<Navigate to="/Translator" replace={true} />
+                    {loginState && (<Navigate to={userURL} replace={true} />
                     )}
                 </div>
             </div>
