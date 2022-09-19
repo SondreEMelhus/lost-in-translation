@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { updateUser } from "./UserHandler";
 import '../styles/Profile.css'
 
 export default function Profile () {
@@ -26,9 +27,9 @@ export default function Profile () {
     }
 
     const removeTranslation = (event) => {
-        console.log(event.target.value);
         const newListOfTranslations = history.filter(translation => translation != event.target.value);
         setHistory(newListOfTranslations);
+        updateUser(user.id, newListOfTranslations);
     }
 
     return (
