@@ -21,6 +21,8 @@ export default function LogIn () {
         fetch(`${apiURL}/translations?username=${username}`)
             .then(response => response.json())
             .then(results => {
+                console.log(JSON.parse(results));
+                /*
                 console.log(results.length);
                 if (results.length != 0) {
                     setUser(JSON.parse(results[0]));
@@ -29,6 +31,7 @@ export default function LogIn () {
                 } else {
                     addUser(username);
                 }
+                */
             })
             .catch(error => {
             })
