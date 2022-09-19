@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './styles/index.css';
@@ -15,9 +15,7 @@ root.render(
     <Router >
      <Header />
       <Routes>
-      <Route path="/" element={<LogIn />} />
-      <Route path="/Translator" element={<Translator />} />
-      <Route path="/Profile" element={<Profile />} />
+        <Route path="/" element={<LogIn />} />
       </Routes>
       <Footer />
     </Router>

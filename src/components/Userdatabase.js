@@ -1,6 +1,6 @@
 export default function UserDatabase () {
     this.database = new Map();
-    this.database.set('Sondre', '123');
+    this.database.set('test', '123');
 
     this.checkForUserInDatabase = (username, password) => {
         if (this.database.has(username)) {
