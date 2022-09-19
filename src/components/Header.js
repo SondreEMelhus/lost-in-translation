@@ -1,12 +1,14 @@
-import React from "react"
+import React from "react";
+import { NavLink } from "react-router-dom";
+import '../styles/index.css'
 
 export default function Header () {
 
     return (
-        <div>
+        <div className="header">
             <header>
                 <div>
-                    Header comp
+                    <NavLink to="/Profile">Profile</NavLink>
                 </div>
             </header>
         </div>
