@@ -56,7 +56,7 @@ export default function LogIn () {
             })
             .then(newUser => {
                 console.log('New user begin created');
-                setUser(newUser);
+                setUser(JSON.parse(newUser));
                 setLoginState(true);
             })
             .catch(error => {
