@@ -7,6 +7,10 @@ import profileLogo from '../assets/profile.svg'
 
 export default function Header () {
 
+    function getUser(){
+        return "  Sondre  ";
+    }
+
     return (
         <div className="header">
                     <div>
@@ -16,7 +20,10 @@ export default function Header () {
                         <h1>Lost in translation</h1>
                     </div>
                     <div className="headerProfileLink">
-                        <NavLink to="/Profile"><img src={profileLogo} className="profileButton" alt="logo"/></NavLink>
+                        <NavLink className="profileLink" to="/Profile">
+                            <p className="profileText">{getUser()}</p>
+                            <img src={profileLogo} className="profileImage" alt="logo"/>
+                        </NavLink>
                     </div>
         </div>
     )

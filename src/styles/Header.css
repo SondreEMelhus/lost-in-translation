@@ -8,10 +8,22 @@
 .headerLogo{
     height: 150px;
 }
-.profileButton{
-    margin-top: 15px;
-    height: 80px;
+.profileLink{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    height: 50px;
 }
+.profilePicture{
+    height: 40px;
+}
+.profileText{
+    background-color: #3877D3;
+    border-radius: 5px;
+    width: 70px;
+    color:white;
+}
+
 .headerTitle{
     font-size: larger;
     font-family:'Love Ya Like A Sister', cursive;
