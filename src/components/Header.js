@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import '../styles/index.css'
 import '../styles/Header.css'
 import logo from '../assets/Logo.png'
+import profileLogo from '../assets/profile.svg'
 
 export default function Header () {
 
@@ -15,7 +16,7 @@ export default function Header () {
                         <h1>Lost in translation</h1>
                     </div>
                     <div className="headerProfileLink">
-                        <NavLink to="/Profile"><img src={logo} className="profileButton" alt="logo"/></NavLink>
+                        <NavLink to="/Profile"><img src={profileLogo} className="profileButton" alt="logo"/></NavLink>
                     </div>
         </div>
     )

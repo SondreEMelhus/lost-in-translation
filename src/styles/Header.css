@@ -9,11 +9,11 @@
     height: 150px;
 }
 .profileButton{
-    height: 110px;
+    margin-top: 15px;
+    height: 80px;
 }
 .headerTitle{
     font-size: larger;
-    margin-right: 700px;
     font-family:'Love Ya Like A Sister', cursive;
 }
 .headerProfileLink{
