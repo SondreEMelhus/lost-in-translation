@@ -21,8 +21,21 @@
     background-color: #3877D3;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
-    width: 70px;
+    text-align: center;
     color:white;
+    margin-right: -2px;
+}
+.profileLink:visited{
+    text-decoration: none;
+}
+.profileLink:link{
+    text-decoration: none;
+}
+.profileLink:hover{
+    text-decoration: none;
+}
+.profileLink:active{
+    text-decoration: none;
 }
 
 .headerTitle{
