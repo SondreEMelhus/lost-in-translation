@@ -1,8 +1,18 @@
 
 :root {
   --primaryColor: #4690FF; /*Original #4690FF*/
-  --secondaryColor: #ffffff; /*Original #fffff*/
-  
+  --secondaryColor: #3877D3; /*Original #3877D3*/
+  --backgroundColor:#ffffff; /*Original #ffffff*/
+}
+.standardButton{
+    color:white;
+    font-family:'Love Ya Like A Sister', cursive;
+    font-weight: bold;
+    border-radius: 15px;
+    align-self: center;
+    border-style: none;
+    border-color: var(--secondaryColor);
+    background-color:var(--secondaryColor);
 }
 
 body {
