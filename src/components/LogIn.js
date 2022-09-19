@@ -2,75 +2,18 @@ import React, { useState, useEffect } from "react"
 import UserDatabase from "./Userdatabase"
 import Translator from "./Translator";
 import { Navigate } from "react-router-dom";
+import { fetchUser } from "./LoginHandler";
 import '../styles/LogIn.css'
 
 export default function LogIn () {
 
     const [username, setUsername] = useState('');
-    const [user, setUser] = useState({});
     const [loginState, setLoginState] = useState(false);
-
-    useEffect(() => {
-        localStorage.setItem('user', JSON.stringify(user));
-       }, [user]);
-
-    const handleLogin = async (username) => {
-
-        const apiURL = 'https://assignment2-sign-translator.herokuapp.com'
-
-        fetch(`${apiURL}/translations?username=${username}`)
-            .then(response => response.json())
-            .then(results => {
-                console.log(JSON.parse(results));
-                /*
-                console.log(results.length);
-                if (results.length != 0) {
-                    setUser(JSON.parse(results[0]));
-                    console.log(user);
-                    setLoginState(true);
-                } else {
-                    addUser(username);
-                }
-                */
-            })
-            .catch(error => {
-            })
-    }
-
-    const addUser = async (username) => {
-        const apiURL = 'https://assignment2-sign-translator.herokuapp.com'
-        const apiKey = 'chAFe94loBrDpnPps1dbnhPEYrMVVvHlmjkC3eTCBVH5gUim9Yquv7XdkS1Jvrkn'
-
-        fetch(`${apiURL}/translations`, {
-                method: 'POST',
-                headers: {
-                'X-API-Key': apiKey,
-                'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ 
-                    username: `${username}`, 
-                    translations: [] 
-                })
-            })
-            .then(response => {
-            if (!response.ok) {
-                throw new Error('Could not create new user')
-            }
-            return response.json()
-            })
-            .then(newUser => {
-                console.log('New user begin created');
-                setUser(JSON.parse(newUser));
-                console.log(user);
-                setLoginState(true);
-            })
-            .catch(error => {
-            })
-    }
 
     const handleSubmit = event => {
         event.preventDefault();
-        handleLogin(username);
+        fetchUser(username);
+        setLoginState(true);
     }
 
     const handleUserChange = (event) => {
