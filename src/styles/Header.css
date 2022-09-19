@@ -1,0 +1,21 @@
+.header{
+    background-color: var(--primaryColor);
+    display: flex;
+    height:120px;
+    justify-content: space-around;
+
+  }
+.headerLogo{
+    height: 150px;
+}
+.profileButton{
+    height: 110px;
+}
+.headerTitle{
+    font-size: larger;
+    margin-right: 700px;
+    font-family:'Love Ya Like A Sister', cursive;
+}
+.headerProfileLink{
+    position: relative;
+}

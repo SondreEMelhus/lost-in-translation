@@ -2,6 +2,7 @@
 :root {
   --primaryColor: #4690FF;
   --secondaryColor: #ffffff; 
+  
 }
 
 body {
@@ -16,10 +17,6 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-.header{
-  background-color: var(--primaryColor);
-  color: var(--primaryColor);
 }
 
 
