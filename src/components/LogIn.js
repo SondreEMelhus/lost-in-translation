@@ -18,16 +18,17 @@ export default function LogIn () {
 
         const apiURL = 'https://assignment2-sign-translator.herokuapp.com'
 
-        results = await fetch(`${apiURL}/translations?username=${username}`)
+        fetch(`${apiURL}/translations?username=${username}`)
             .then(response => response.json())
+            .then(results => {
+                updateUser(results);
+                updateUserURL(`/translations?username=${username}`)
+                console.log(user);
+                console.log(userURL);
+            })
             .catch(error => {
             })
-        if (results != null) {
-            updateUser(results);
-            updateUserURL(results);
-            console.log(user);
-            console.log(userURL);
-        } else {
+        if (results == {}) {
             addUser(username);
         }
     }
@@ -54,8 +55,8 @@ export default function LogIn () {
             return response.json()
             })
             .then(newUser => {
-                updateUser(newUser);
-                updateUserURL(newUser);
+                updateUser(username);
+                updateUserURL(`/translations?username=${username}`);
                 console.log(user);
                 console.log(userURL);
             })
@@ -73,7 +74,6 @@ export default function LogIn () {
 
     const handleSubmit = event => {
         event.preventDefault();
-
         handleLogin(username);
     }
 
