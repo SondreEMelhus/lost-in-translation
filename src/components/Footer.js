@@ -8,7 +8,7 @@ export default function Footer () {
         <div className="footer">
             <footer>
                 <div className="footerText">
-                    by Karoline Øijorden, Sondre Melhus and Vegard Gunarson
+                    by Karoline Øijorden, Sondre Melhus and Vegard Gunnarson
                 </div>
             </footer>
         </div>
