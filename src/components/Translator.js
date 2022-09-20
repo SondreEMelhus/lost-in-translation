@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState} from "react"
 import '../styles/index.css'
 import '../styles/Translator.css'
 import a from '../assets/individial_signs/a.png'
@@ -43,13 +43,12 @@ export default function Translator () {
         imageParent.innerHTML = ""; // removes any previous translation elements
         for (let char of text) {
             // TODO deal with whitespaces
-            if (char.toLowerCase() != char.toUpperCase()) { // checks if the character is a letter
+            if (/^[a-z]+$/i.test(char)) { // checks if the character is a letter between a-z
                 char = char.toLowerCase();
                 var image = document.createElement("img");
-                image.setAttribute("alt", char);
-                image.setAttribute("src", getImgPath(char));
-                //image.setAttribute("className", "signImage");
                 image.className = "signImage";
+                image.alt = char;
+                image.src = getImgPath(char);
                 imageParent.appendChild(image);
             }
         }
@@ -150,6 +149,9 @@ export default function Translator () {
                         type="text" 
                         value={text}
                         placeholder="Translate"
+                        onFocus={(e) => {
+                            e.target.value = '';
+                          }}
                         onChange={(e) => translateText(e.target.value)}
                     />
                     </label>
