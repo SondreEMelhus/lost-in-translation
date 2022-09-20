@@ -1,4 +1,5 @@
 import { useState} from "react"
+import { InputGroup, Input, Button } from "react-bootstrap";
 import '../styles/index.css'
 import '../styles/Translator.css'
 import a from '../assets/individial_signs/a.png'
@@ -39,7 +40,7 @@ export default function Translator () {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        var imageParent = document.getElementById("translationBox");
+        var imageParent = document.getElementById("translationOutputBox");
         imageParent.innerHTML = ""; // removes any previous translation elements
         for (let char of text) {
             // TODO deal with whitespaces
@@ -140,25 +141,21 @@ export default function Translator () {
     }
 
     return (
-        <div className="grid-container">
-            <div className="grid-item">
+        <div className="translation">
+            <div className="container" class="d-flex justify-content-center" id="translationInputBox">
                 <form onSubmit={handleSubmit}>
                     <label>
-                    <input
-                        className="inputText"
-                        type="text" 
-                        value={text}
-                        placeholder="Translate"
-                        onFocus={(e) => {
-                            e.target.value = '';
-                          }}
-                        onChange={(e) => translateText(e.target.value)}
-                    />
+                        <div className="input-group mb-3">  
+                            <input type="text" className="form-control" placeholder="Translate" aria-label="Translate" aria-describedby="basic-addon2" onChange={(e) => translateText(e.target.value)} onFocus={(e) => {
+                            e.target.value = '';}}></input>
+                            <div className="input-group-append">
+                                <button className="btn btn-outline-secondary" type="submit">Submit</button>
+                            </div>
+                        </div>
                     </label>
-                    <input type="submit" className="standardButton" value="Submit"/>
                 </form>
             </div>
-            <div className="grid-item" id="translationBox"></div>
+            <div className="container" id="translationOutputBox"></div>
         </div>
     )
 }
