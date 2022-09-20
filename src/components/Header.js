@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import '../styles/index.css'
 import '../styles/Header.css'
@@ -6,13 +6,14 @@ import logo from '../assets/Logo.png'
 import profileLogo from '../assets/profile.svg'
 
 export default function Header () {
+    const [user, setUser] = useState({});
 
-    function getUser(){
-        return "Sondre";
-    }
-    function getUserWidth(){
-        return ((getUser().length)*8+30).toString()+"px";
-    }
+    useEffect(() => {
+        const userInfo = JSON.parse(localStorage.getItem('user'));
+        if (userInfo) {
+         setUser(userInfo);
+        }
+      }, []);
 
     return (
         <div className="header">
@@ -26,10 +27,12 @@ export default function Header () {
             </div>
                     <div className="headerProfileLink">
                         <NavLink className="profileLink" to="/Profile">
-                            <p className="profileText" style={{width: getUserWidth()}} >{getUser()}</p>
+                            <p className="profileText">{user.username}</p>
                             <img src={profileLogo} className="profileImage" alt="logo"/>
                         </NavLink>
                     </div>
         </div>
     )
 }
+
+
