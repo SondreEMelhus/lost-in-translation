@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react"
 import { Navigate } from "react-router-dom";
-import { fetchUser } from "./UserHandler";
+import { fetchUser, retriveUserLocaly } from "./UserAPI";
 import '../styles/LogIn.css'
 
 export default function LogIn () {
 
     const [username, setUsername] = useState('');
     const [loginState, setLoginState] = useState(false);
+
+    useEffect (() => {if (retriveUserLocaly()) { setLoginState(true); }}, [])
 
     const handleSubmit = event => {
         event.preventDefault();

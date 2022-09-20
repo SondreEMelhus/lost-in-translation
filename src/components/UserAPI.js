@@ -1,3 +1,13 @@
+//Function used to store a user in localstorage
+export function storeUserLocaly(user) {
+  localStorage.setItem('user', JSON.stringify(user));
+}
+
+//Function used to retrive a user from localstorage
+export function retriveUserLocaly() {
+    return JSON.parse(localStorage.getItem('user'));
+}
+
 //Feth a user, if it exists store the user in localstorage, if not add a new user
 export const fetchUser = async (username) => {
 
@@ -7,8 +17,7 @@ export const fetchUser = async (username) => {
         .then(response => response.json())
         .then(results => {
             if (results.length != 0) {
-                console.log(results[0]);
-                localStorage.setItem('user', JSON.stringify(results[0]));
+                storeUserLocaly(results[0]);
             } else {
                 addUser(username);  
             }
@@ -40,9 +49,7 @@ const addUser = async (username) => {
         })
         .then(newUser => {
           // newUser is the new user with an id
-          console.log(newUser.length);
-          console.log(newUser);
-          localStorage.setItem('user', JSON.stringify(newUser));
+          storeUserLocaly(newUser);
         })
         .catch(error => {
         })
