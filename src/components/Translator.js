@@ -161,8 +161,8 @@ export default function Translator (props) {
     }
 
     return (
-        <div className="grid-container">
-            <div className="grid-item">
+        <div className="translation">
+            <div className="container" class="d-flex justify-content-center" id="translationInputBox">
                 <form onSubmit={handleSubmit}>
                     <label>
                     <div className="input-group mb-3">  
@@ -173,10 +173,9 @@ export default function Translator (props) {
                             </div>
                         </div>
                     </label>
-                    <input type="submit" className="standardButton" value="Submit"/>
                 </form>
             </div>
-            <div className="grid-item" id="translationBox"></div>
+            <div className="container" id="translationOutputBox"></div>
         </div>
     )
 }

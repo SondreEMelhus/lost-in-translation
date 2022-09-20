@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom"; 
 import '../styles/index.css'
 import '../styles/Header.css'
 import logo from '../assets/Logo.png'
 import profileLogo from '../assets/profile.svg'
+import { retriveUserLocaly } from "./UserAPI";
 
 export default function Header () {
     const [user, setUser] = useState({});
-
+    const [loginState, setLoginState] = useState(false);
     useEffect(() => {
-        const userInfo = JSON.parse(localStorage.getItem('user'));
+        const userInfo = retriveUserLocaly();
         if (userInfo) {
          setUser(userInfo);
+         setLoginState(true);
         }
-      }, []);
+    }, []);
+
 
     return (
         <div className="header">
@@ -26,10 +29,10 @@ export default function Header () {
                     </div>
             </div>
                     <div className="headerProfileLink">
-                        <NavLink className="profileLink" to="/Profile">
+                        {loginState && <NavLink className="profileLink" to="/Profile">
                             <p className="profileText">{user.username}</p>
                             <img src={profileLogo} className="profileImage" alt="logo"/>
-                        </NavLink>
+                        </NavLink>}
                     </div>
         </div>
     )
