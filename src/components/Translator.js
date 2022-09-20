@@ -29,11 +29,10 @@ import y from '../assets/individial_signs/y.png'
 import z from '../assets/individial_signs/z.png'
 
 //Imports to store user translations
-import { retriveUserLocaly, updateUser } from './UserAPI'
-
+import { retriveUserLocaly } from './UserAPI'
 import {updateTranslations} from './TranslationHandler'
 
-export default function Translator () {
+export default function Translator (props) {
 
     /*
     const apiURL = 'https://assignment2-sign-translator.herokuapp.com'
@@ -49,7 +48,7 @@ export default function Translator () {
          setUser(userInfo);
          setHistory(userInfo.translations)
         }
-      }, []);
+      }, [text]);
 
 
     const handleSubmit = (event) => {

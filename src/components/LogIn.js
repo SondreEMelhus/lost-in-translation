@@ -1,41 +1,27 @@
 import React, { useState, useEffect } from "react"
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { fetchUser, retriveUserLocaly } from "./UserAPI";
 import '../styles/LogIn.css'
 
 export default function LogIn () {
 
     const [username, setUsername] = useState('');
-    const [user, setUser] = useState({});
     const [loggedIn, setLoggedIn] = useState(false);
-    const navigate = useNavigate();
 
     useEffect (() => {if (retriveUserLocaly()) { 
-        setUser(retriveUserLocaly());
-        navigate('/Translator', { user: user }); 
+        setLoggedIn(true); 
     }
     }, [])
 
     const handleSubmit = event => {
         event.preventDefault();
-        //fetchUser(username);
-        setUser(fetchUser(username));
+        fetchUser(username);
         setLoggedIn(true);
-        navigate('/Translator', { user: user });
     }
 
     const handleUserChange = (event) => {
         setUsername(event.target.value);
     }
-
-    /*
-    if (loggedIn) {
-        return (
-            <Navigate to="/Translator" user={user} replace={true}/>
-        )
-    }
-    */
-
 
     return (
         <div className='logInStyle'>
@@ -50,6 +36,7 @@ export default function LogIn () {
                             <button type="submit">Log in</button>
                         </div>
                     </form>
+                    {loggedIn && (<Navigate to="/Translator" replace={true} />)}
                 </div>
             </div>
         </div>
