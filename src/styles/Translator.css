@@ -14,15 +14,24 @@
     padding: 5%;
 }
 
-#translationBox {
-    background-color: #EEEEEE;
-    padding: 5%;
+#translationInputBox {
+    margin-top: 5%;
+}
+
+#translationOutputBox {
+    background-color: #f5f1f1;
+    padding: 3%;
     border-radius: 8px;
-    border: 2px solid black;
-    width: 50%;
+    border: 1px solid rgb(182, 181, 181);
+    width: 60%;
+    height: 80%;
 }
 
 .signImage {
     width: 70px;
     height: 70px;
+}
+
+.translation {
+    height: 100%;
 }
