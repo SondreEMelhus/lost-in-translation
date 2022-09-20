@@ -79,7 +79,7 @@ fetch(`${apiURL}/translations/${userId}`, {
     })
     .then(updatedUser => {
       // updatedUser is the user with the Patched data
-      localStorage.setItem('user', JSON.stringify(updatedUser))
+      storeUserLocaly(updatedUser)
     })
     .catch(error => {
     })
