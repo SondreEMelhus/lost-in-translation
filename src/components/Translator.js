@@ -1,4 +1,4 @@
-import { useState} from "react"
+import { useState, useEffect} from "react"
 import { InputGroup, Input, Button } from "react-bootstrap";
 import '../styles/index.css'
 import '../styles/Translator.css'
@@ -29,17 +29,32 @@ import x from '../assets/individial_signs/x.png'
 import y from '../assets/individial_signs/y.png'
 import z from '../assets/individial_signs/z.png'
 
-export default function Translator () {
+//Imports to store user translations
+import { retriveUserLocaly } from './UserAPI'
+import {updateTranslations} from './TranslationHandler'
+
+export default function Translator (props) {
 
     /*
     const apiURL = 'https://assignment2-sign-translator.herokuapp.com'
     */
 
-    const [text, translateText] = useState("");
-    
+    const [text, setText] = useState('');
+    const [user, setUser] = useState({});
+    const [history, setHistory] = useState([]);
+
+    useEffect(() => {
+        const userInfo = retriveUserLocaly();
+        if (userInfo) {
+         setUser(userInfo);
+         setHistory(userInfo.translations)
+        }
+      }, [text]);
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setHistory(updateTranslations(user, history, text));
         var imageParent = document.getElementById("translationOutputBox");
         imageParent.innerHTML = ""; // removes any previous translation elements
         for (let char of text) {
@@ -53,7 +68,12 @@ export default function Translator () {
                 imageParent.appendChild(image);
             }
         }
-      }
+    }
+
+    const handleInput = (event) => {
+        setText(event.target.value);
+    }
+
 
     function getImgPath(char) {
         let path = "";
@@ -133,7 +153,7 @@ export default function Translator () {
             case 'y':
                 path = y;
                 break;
-            case 'z':
+            default:
                 path = z;
                 break;
           }
@@ -145,8 +165,8 @@ export default function Translator () {
             <div className="container" class="d-flex justify-content-center" id="translationInputBox">
                 <form onSubmit={handleSubmit}>
                     <label>
-                        <div className="input-group mb-3">  
-                            <input type="text" className="form-control" placeholder="Translate" aria-label="Translate" aria-describedby="basic-addon2" onChange={(e) => translateText(e.target.value)} onFocus={(e) => {
+                    <div className="input-group mb-3">  
+                            <input type="text" className="form-control" placeholder="Translate" aria-label="Translate" aria-describedby="basic-addon2" onChange={handleInput} onFocus={(e) => {
                             e.target.value = '';}}></input>
                             <div className="input-group-append">
                                 <button className="btn btn-outline-secondary" type="submit">Submit</button>

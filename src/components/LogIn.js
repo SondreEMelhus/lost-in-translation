@@ -6,14 +6,17 @@ import '../styles/LogIn.css'
 export default function LogIn () {
 
     const [username, setUsername] = useState('');
-    const [loginState, setLoginState] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(false);
 
-    useEffect (() => {if (retriveUserLocaly()) { setLoginState(true); }}, [])
+    useEffect (() => {if (retriveUserLocaly()) { 
+        setLoggedIn(true); 
+    }
+    }, [])
 
     const handleSubmit = event => {
         event.preventDefault();
         fetchUser(username);
-        setLoginState(true);
+        setLoggedIn(true);
     }
 
     const handleUserChange = (event) => {
@@ -33,8 +36,7 @@ export default function LogIn () {
                             <button type="submit">Log in</button>
                         </div>
                     </form>
-                    {loginState && (<Navigate to='/Translator' replace={true} />
-                    )}
+                    {loggedIn && (<Navigate to="/Translator" replace={true} />)}
                 </div>
             </div>
         </div>
