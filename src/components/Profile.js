@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react"
-import { updateUser } from "./UserHandler";
+import { Navigate } from "react-router-dom";
+import { updateUser, retriveUserLocaly } from "./UserAPI";
 import '../styles/Profile.css'
 
 export default function Profile () {
 
     const [user, setUser] = useState({});
     const [history, setHistory] = useState([])
+    const [logOut, setLogOut] = useState(false);
 
     /*
     //Method used to change the state of locations and add a new location to the array
@@ -15,7 +17,7 @@ export default function Profile () {
     */
 
     useEffect(() => {
-        const userInfo = JSON.parse(localStorage.getItem('user'));
+        const userInfo = retriveUserLocaly();
         if (userInfo) {
          setUser(userInfo);
          setHistory(userInfo.translations)
@@ -23,7 +25,8 @@ export default function Profile () {
       }, []);
 
     const handleLogOut = () => {
-        alert('Logging out (Not rly)')
+        localStorage.clear();
+        setLogOut(true);
     }
 
     const removeTranslation = (event) => {
@@ -67,6 +70,8 @@ export default function Profile () {
                     })}
                 </div>
             </div>
+            {logOut && (<Navigate to='/' replace={true} />
+                    )}
         </div>
     )
 }
