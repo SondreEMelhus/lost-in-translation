@@ -1,44 +1,28 @@
-import React, { useState, useEffect } from "react"
-import { Navigate } from "react-router-dom";
-import { updateUser, retriveUserLocaly } from "./UserAPI";
+import React from "react"
+//Kan være jeg må bruke setUser(retriveUserLocaly)
 import '../styles/Profile.css'
+import { useUser } from "../context/UserContext";
+import withAuth from "../hoc/withAuth";
+import ProfileHeader from "./profile/ProfileHeader";
+import ProfileActions from "./profile/ProfileActions";
+import ProfileTranslationHistory from "./profile/ProfileTranslationHistory";
 
-export default function Profile () {
+function Profile () {
 
-    const [user, setUser] = useState({});
-    const [history, setHistory] = useState([])
-    const [logOut, setLogOut] = useState(false);
+    const { user, setUser } = useUser();
 
-    /*
-    //Method used to change the state of locations and add a new location to the array
-    const addTranslation = (newTranslation) => {
-        setTranslations((translations) => [newTranslations, ...translation]);
-    };
-    */
-
-    useEffect(() => {
-        const userInfo = retriveUserLocaly();
-        if (userInfo) {
-         setUser(userInfo);
-         setHistory(userInfo.translations)
-        }
-      }, []);
-
-    const handleLogOut = () => {
-        localStorage.clear();
-        setLogOut(true);
-    }
-
-    const removeTranslation = (event) => {
-        const newListOfTranslations = history.filter(translation => translation != event.target.value);
-        setHistory(newListOfTranslations);
-        updateUser(user.id, newListOfTranslations);
-    }
 
     return (
         <div className="profile-container">
+            <ProfileHeader username = { user.username } translations = { user.translations } />
+            <ProfileActions />
+            <ProfileTranslationHistory user = { user } setUser = { setUser } />
+        </div>
+    )
+    
+
+    /*
             
-            {/* Profile tab */}
             <div className="profile-item">
                 <div>
                     <h1 className='profile-title'>User info</h1>
@@ -53,13 +37,13 @@ export default function Profile () {
                 </div>
             </div>
 
-            {/* History tab */}
+            
             <div className="profile-item">
                 <div>
                     <h1 className='profile-title'>Translation history</h1>
                 </div>
                 <div className="history-tab">
-                    {history.map((translation, i) => {
+                    {user.translations.map((translation, i) => {
                         return (
                             <div className="history-item" key={i+ 1}>
                                 <div className="translation-grid">
@@ -74,6 +58,7 @@ export default function Profile () {
             </div>
             {logOut && (<Navigate to='/' replace={true} />
                     )}
-        </div>
-    )
+                    */
 }
+
+export default withAuth(Profile);
