@@ -31,12 +31,15 @@
     border-radius: 30px;
     box-shadow: 0px 0px 10px 5px lightgrey;
     width: 50%;
+<<<<<<< HEAD
     height: 300px;
     background-color: #EEEEEE;
     padding: 5%;
     border: 2px solid black;
     width: 50%;
     border-radius: 8px;
+=======
+>>>>>>> ff86c0207263c466b6671212a68678da24ff7e6e
     height: 100%;
     min-height: 170px;
 }
