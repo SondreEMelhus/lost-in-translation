@@ -32,6 +32,7 @@
     box-shadow: 0px 0px 10px 5px lightgrey;
     width: 50%;
     height: 100%;
+    min-height: 200px;
 }
 
 .signImage {
