@@ -1,22 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom"; 
 import '../styles/index.css'
 import '../styles/Header.css'
 import logo from '../assets/Logo.png'
 import profileLogo from '../assets/profile.svg'
-import { retriveUserLocaly } from "./UserAPI";
+import { useUser } from '../context/UserContext';
 
 export default function Header () {
-    const [user, setUser] = useState({});
-    const [loginState, setLoginState] = useState(false);
-    useEffect(() => {
-        const userInfo = retriveUserLocaly();
-        if (userInfo) {
-         setUser(userInfo);
-         setLoginState(true);
-        }
-    }, []);
-
+    const { user } = useUser();
 
     return (
         <div className="header">
@@ -29,7 +20,7 @@ export default function Header () {
                     </div>
             </div>
                     <div className="headerProfileLink">
-                        {loginState && <NavLink className="profileLink" to="/Profile">
+                        {(user !== null) && <NavLink className="profileLink" to="/Profile">
                             <p className="profileText">{user.username}</p>
                             <img src={profileLogo} className="profileImage" alt="logo"/>
                         </NavLink>}
