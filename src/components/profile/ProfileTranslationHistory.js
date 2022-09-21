@@ -12,8 +12,6 @@ const ProfileTranslationHistory = ({ user, setUser }) => {
     const removeTranslation = async (event) => {
         let newTranslations = translations.filter(translation => translation !== translations[event.target.value]);
         const [error, result] = await updateTranslation(user, newTranslations)
-        console.log('Error', error);
-        console.log('Result', result);
 
         if (error === null) {
             setUser(result);

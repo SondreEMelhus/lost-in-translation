@@ -32,7 +32,7 @@ export const updateTranslation = async (user, newTranslationList) => {
 export const  clearTranslations = async (user) => {
     try {
         const response = await fetch(`${apiUrl}/translations/${user.id}`, {
-            method: 'PATCH', // NB: Set method to PATCH
+            method: 'PATCH',
             headers: {
               'X-API-Key': apiKey,
               'Content-Type': 'application/json'

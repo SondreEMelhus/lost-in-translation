@@ -2,7 +2,7 @@ import { deleteUserLocaly } from "../UserAPI";
 import { useUser } from "../../context/UserContext";
 import { clearTranslations } from "../TranslationHandler";
 
-const ProfileActions = ({ logout }) => {
+const ProfileActions = () => {
 
     const {user, setUser} = useUser();
 
