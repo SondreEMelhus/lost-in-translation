@@ -30,8 +30,10 @@ function Profile () {
                 <div className="user-tab">
                     <div className="user-item">
                         <p>Name: {user.username} </p>
-                        <button onClick={handleLogOut}>Log out</button>
-                    </div>
+                        </div>
+                    <div className="buttonBox">
+                        <button className="standardButton" onClick={handleLogOut}>Log out</button>
+                        </div>
                 </div>
             </div>
 
