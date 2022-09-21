@@ -40,7 +40,6 @@ function Translator (props) {
     const { user, setUser } = useUser();
     
     const [text, setText] = useState('');
-    //Kan se om jeg kan fjerne denne
     const [translating, setTranslating] = useState(false);
     const [error, setError] = useState();
 
@@ -59,8 +58,6 @@ function Translator (props) {
         const newTranslations = generateNewTranslations(user, text);
 
         const [error, result] = await updateTranslation(user, newTranslations)
-        console.log('Error', error);
-        console.log('Result', result);
 
         if (error === null) {
             setUser(result);
