@@ -1,4 +1,4 @@
-import { useState} from "react"
+import { useState, useEffect} from "react"
 import '../styles/index.css'
 import '../styles/Translator.css'
 import a from '../assets/individial_signs/a.png'
@@ -28,17 +28,33 @@ import x from '../assets/individial_signs/x.png'
 import y from '../assets/individial_signs/y.png'
 import z from '../assets/individial_signs/z.png'
 
-export default function Translator () {
+//Imports to store user translations
+import { retriveUserLocaly } from './UserAPI'
+import {updateTranslations} from './TranslationHandler'
+
+export default function Translator (props) {
 
     /*
     const apiURL = 'https://assignment2-sign-translator.herokuapp.com'
     */
 
+    //const [text, setText] = useState('');
+    const [user, setUser] = useState({});
+    const [history, setHistory] = useState([]);
     const [text, translateText] = useState("");
-    
+
+    useEffect(() => {
+        const userInfo = retriveUserLocaly();
+        if (userInfo) {
+         setUser(userInfo);
+         setHistory(userInfo.translations)
+        }
+      }, [text]);
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        //setHistory(updateTranslations(user, history, text));
         var imageParent = document.getElementById("translationBox");
         imageParent.innerHTML = ""; // removes any previous translation elements
         for (let char of text) {
@@ -52,7 +68,12 @@ export default function Translator () {
                 imageParent.appendChild(image);
             }
         }
-      }
+    }
+/*
+    const handleInput = (event) => {
+        setText(event.target.value);
+    }
+*/
 
     function getImgPath(char) {
         let path = "";
@@ -132,7 +153,7 @@ export default function Translator () {
             case 'y':
                 path = y;
                 break;
-            case 'z':
+            default:
                 path = z;
                 break;
           }
