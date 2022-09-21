@@ -140,8 +140,8 @@ export default function Translator () {
     }
 
     return (
-        <div className="grid-container">
-            <div className="grid-item">
+        <div className="grid">
+            <div className="inputs">
                 <form onSubmit={handleSubmit}>
                     <label>
                     <input
@@ -158,7 +158,7 @@ export default function Translator () {
                     <input type="submit" className="standardButton" value="Submit"/>
                 </form>
             </div>
-            <div className="grid-item" id="translationBox"></div>
+            <div id="translationBox"></div>
         </div>
     )
 }
