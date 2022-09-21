@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react"
+import { useState, useEffect } from "react"
 import '../styles/index.css'
 import '../styles/Translator.css'
 import a from '../assets/individial_signs/a.png'
@@ -29,32 +29,51 @@ import y from '../assets/individial_signs/y.png'
 import z from '../assets/individial_signs/z.png'
 
 //Imports to store user translations
-import { retriveUserLocaly } from './UserAPI'
-import {updateTranslations} from './TranslationHandler'
+import { useUser } from '../context/UserContext';
+import { generateNewTranslations, updateTranslation } from "./TranslationHandler"
+import withAuth from "../hoc/withAuth"
+import { storeUserLocaly } from '../components/UserAPI'
 
-export default function Translator (props) {
+function Translator (props) {
 
-    /*
-    const apiURL = 'https://assignment2-sign-translator.herokuapp.com'
-    */
 
-    //const [text, setText] = useState('');
-    const [user, setUser] = useState({});
-    const [history, setHistory] = useState([]);
-    const [text, translateText] = useState("");
+    const { user, setUser } = useUser();
+    
+    const [text, setText] = useState('');
+    //Kan se om jeg kan fjerne denne
+    const [translating, setTranslating] = useState(false);
+    const [error, setError] = useState();
 
-    useEffect(() => {
-        const userInfo = retriveUserLocaly();
-        if (userInfo) {
-         setUser(userInfo);
-         setHistory(userInfo.translations)
+    useEffect (()=> {
+        console.log('User has changed', user);
+        console.log(user.translations);
+    }, [ user ])
+
+    const storeTranslation = async () => {
+        console.log(text);
+        if (text == '') {
+            alert('Please enter a word to translate');
+            return
         }
-      }, [text]);
 
+        const newTranslations = generateNewTranslations(user, text);
+
+        const [error, result] = await updateTranslation(user, newTranslations)
+        console.log('Error', error);
+        console.log('Result', result);
+
+        if (error === null) {
+            setUser(result);
+            storeUserLocaly(result);
+        } else {
+            setError(error);
+        }
+    }
 
     const handleSubmit = (event) => {
+        setTranslating(true);
         event.preventDefault();
-        //setHistory(updateTranslations(user, history, text));
+        storeTranslation()
         var imageParent = document.getElementById("translationBox");
         imageParent.innerHTML = ""; // removes any previous translation elements
         for (let char of text) {
@@ -68,12 +87,15 @@ export default function Translator (props) {
                 imageParent.appendChild(image);
             }
         }
+        setTranslating(false);
     }
-/*
+
     const handleInput = (event) => {
+        if (error !== null) {
+            setError(null);
+        }
         setText(event.target.value);
     }
-*/
 
     function getImgPath(char) {
         let path = "";
@@ -173,13 +195,16 @@ export default function Translator (props) {
                         onFocus={(e) => {
                             e.target.value = '';
                           }}
-                        onChange={(e) => translateText(e.target.value)}
+                        onChange={handleInput}
                     />
                     </label>
                     <input type="submit" className="standardButton" value="Submit"/>
+                    {error && <p>{error}</p>}
                 </form>
             </div>
             <div id="translationBox"></div>
         </div>
     )
 }
+
+export default withAuth(Translator)
