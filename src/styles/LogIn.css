@@ -28,14 +28,8 @@ input {
 .getStarted{
     font-size: large;
 }
-
-.title {
-    margin-left: 39%;
-    font-size:x-large;
-    font-family:'Love Ya Like A Sister', cursive;
-}
 .pageTitle{
-    font-size:xx-large;
+    font-size: xx-large;
     font-family:'Love Ya Like A Sister', cursive;
 }
 .fieldSet{
