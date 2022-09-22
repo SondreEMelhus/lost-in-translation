@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { loginUser, storeUserLocaly } from './UserAPI';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
+import '../styles/LogIn.css'
 
 const usernameConfig = {
     required: true,
@@ -64,11 +65,11 @@ const LoginForm = () => {
     return (
         <div>
             <form onSubmit={ handleSubmit(onSubmit) }>
-                <fieldset>
-                    <input type="text" placeholder='username' {...register("username", usernameConfig)}></input>
+                <fieldset className='fieldSet'>
+                    <input className="input" type="text" placeholder="What's your name?" {...register("username", usernameConfig)}></input>
                     { errorMessage }
+                    <button type="submit" className="standardButton" disabled= {loading}>Login</button>
                 </fieldset>
-                <button type="submit" disabled= {loading}>Login</button>
                 { loading && <p>Logging in...</p>}
                 { apiError && <p>{ apiError }</p>}
             </form>
