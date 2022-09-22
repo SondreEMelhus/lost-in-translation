@@ -21,7 +21,7 @@ import ProfileTranslationHistory from "./profile/ProfileTranslationHistory";
  */
 function Profile () {
 
-    
+
     //Hooks
     const { user, setUser } = useUser();
 

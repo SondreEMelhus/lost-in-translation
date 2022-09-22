@@ -35,7 +35,33 @@ import { generateNewTranslations, updateTranslation } from "./TranslationHandler
 import withAuth from "../hoc/withAuth"
 import { storeUserLocaly } from '../components/UserAPI'
 
-function Translator (props) {
+/**
+ * @Component
+ * Component responsible for rendering a view of the translator.
+ * 
+ *  Hooks:
+ *  - useUser : Used to retrive and set the state of the current user.
+ *  
+ * States:
+ *  - test : (String): Used to manage the state of the text input by the user
+ *  - translating: (Boolean) : Used to manage the state of translation process
+ *  - error : (String) : Used to manage the state of error messages
+ * 
+ * Event handlers:
+ *  - storeTranslation : Responsible for handling the storing of a translation 
+ *                       in the user object
+ *  - handleSubmit : Responsible for handling submissions of user input for translation
+ *  - handleInput : Responsible for updating the state of text when changes happen in 
+ *                  translation input field
+ *  
+ * Functions: 
+ *  - getImage : Responsible for retriving a image that that correlates to a given character      
+ * 
+ * Render functions:
+ *  - errorMessage: Renders error messages related to the usernameConfig
+ * @returns Renders the translation input field, translate submit button and translation box 
+ */
+function Translator () {
 
     //Hook
     const { user, setUser } = useUser();
@@ -45,11 +71,6 @@ function Translator (props) {
     const [translating, setTranslating] = useState(false);
     const [error, setError] = useState();
 
-    //Side effect
-    useEffect (()=> {
-        console.log('User has changed', user);
-        console.log(user.translations);
-    }, [ user ])
 
     //Event handlers
     const storeTranslation = async () => {
@@ -108,9 +129,9 @@ function Translator (props) {
     }
 
     /**
-     * gets the path to the sign image that correspons to a letter
-     * @param {*} char a letter
-     * @returns path to the sign image
+     * 
+     * @param {Character} char 
+     * @returns Path to image corresponding to char
      */
     function getImgPath(char) {
         let path = "";
@@ -200,6 +221,7 @@ function Translator (props) {
           return path;
     }
 
+    //Render function
     return (
         <div className="grid">
             <div className="inputs">

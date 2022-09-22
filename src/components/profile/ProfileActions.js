@@ -3,15 +3,27 @@ import { useUser } from "../../context/UserContext";
 import { clearTranslations } from "../TranslationHandler";
 import '../../styles/Profile.css'
 
-/**Component responsible for handling a user log out log out action.*/
+/** 
+ * @Component
+ * Component used to handle the actions on the profile page. 
+ * 
+ * Hooks:
+ *  - useUser : Used to retrive and set the state of the current user.
+ * 
+ * Event handlers:
+ *  - handleLogoutClick : Responsible for handling the logout action on profile page 
+ * 
+ * Render functions:
+ *  @return Renders the log out button
+ */
 const ProfileActions = ({ logout }) => {
 
-
-    //Hook used to retrive a the state of a user
+    //Hook
+    
     const {user, setUser} = useUser();
 
 
-    /** Used to handle when a user clicks the log out button*/
+    //Event handler
     const handleLogoutClick = async () => {
         if (window.confirm('Are you sure?')) {
             const [error, result] = await clearTranslations(user)
@@ -25,7 +37,7 @@ const ProfileActions = ({ logout }) => {
     }
 
 
-    //Renders the log out button
+    //Render function
     return (
             <button className="standardButton" onClick={ handleLogoutClick }>Log out</button>
 

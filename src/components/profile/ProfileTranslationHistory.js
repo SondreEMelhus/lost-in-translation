@@ -4,20 +4,29 @@ import { storeUserLocaly } from "../UserAPI";
 import React, {useState} from "react";
 import '../../styles/Profile.css'
 
-/**Component responsible for displaying a users translation history and handling request to 
- * remove a translation from the translation history  */
+/** 
+ * @Component
+ * Component responsible for displaying a users translation history and handling request to 
+ * remove a translation from the translation history. 
+ * 
+ * States:
+ *  - error: (String) : Used to manage the error message recived from API requests
+ * 
+ * Event handlers:
+ *  - removeTranslation : Responsible for handling requests to remove a translation from
+ *                        the translation history
+ * 
+ * Render functions:
+ *  @return Renders all the translations in a user translation history
+ */
 const ProfileTranslationHistory = ({ user, setUser }) => {
 
-    //Hook used to retrive a the state of a user
+    //Hooks
     const [error, setError] = useState();
-
-
-    //Storing user translations in a local variable for ease of use
     let translations = user.translations;
 
 
-    /**Event handler used to handle requests to remove a 
-    translation from the translation history*/
+    //Event handlers
     const removeTranslation = async (event) => {
         let newTranslations = translations.filter(translation => translation !== translations[event.target.value]);
         const [error, result] = await updateTranslation(user, newTranslations)
@@ -31,8 +40,7 @@ const ProfileTranslationHistory = ({ user, setUser }) => {
     }
 
     
-    //Renders all the translations in a user translation history. 
-    //Each translation is rendered as a uniqe item, to make remove requests easier to handle.
+    //Render function
     return (
         <div>
             <h4>Your translation history:</h4>
