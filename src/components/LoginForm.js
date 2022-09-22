@@ -12,7 +12,8 @@ import '../styles/LogIn.css'
  */
 const usernameConfig = {
     required: true,
-    minLength: 2
+    minLength: 2,
+    maxLength: 20
 }
 
 /** 
@@ -95,6 +96,12 @@ const LoginForm = () => {
                 <span>Username is too short(min 2)</span>
             )
         }
+
+        if (errors.username.type === 'maxLength') {
+            return (
+                <span>Username is too long(max 20)</span>
+            )
+        }
     })()
 
     return (
@@ -105,9 +112,9 @@ const LoginForm = () => {
                     { errorMessage }
                     <button type="submit" className="standardButton" disabled= {loading}>Login</button>
                 </fieldset>
-                { loading && <p>Logging in...</p>}
-                { apiError && <p>{ apiError }</p>}
             </form>
+            { loading && <p>Logging in...</p>}
+            { apiError && <p>{ apiError }</p>}
         </div>
     )
 }
