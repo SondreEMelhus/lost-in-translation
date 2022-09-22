@@ -1,8 +1,20 @@
-import { patchUser } from "./UserAPI";
 
+/**
+ * Constant used to store a refrence to API url located in enviroment variables
+ */
 const apiUrl = process.env.REACT_APP_API_URL
+
+/**
+ * Constant used to store a refrence to API key located in enviroment variables
+ */
 const apiKey =  process.env.REACT_APP_API_KEY
 
+/**
+ * Function responsible for updating a users information using API PATCH request.
+ * @param {Object} user - A user object
+ * @param {Array} newTranslationList - An array containing the new translations
+ * @returns Patched user object or error message
+ */
 export const updateTranslation = async (user, newTranslationList) => {
     try {
         const response = await fetch(`${apiUrl}/translations/${user.id}`, {
@@ -28,7 +40,11 @@ export const updateTranslation = async (user, newTranslationList) => {
     }
 }
 
-
+/**
+ * Function used to clear a users translation history.
+ * @param {Obejct} user - A user object 
+ * @returns Patched user object with no translations or error message
+ */
 export const  clearTranslations = async (user) => {
     try {
         const response = await fetch(`${apiUrl}/translations/${user.id}`, {
@@ -54,6 +70,12 @@ export const  clearTranslations = async (user) => {
     }
 }
 
+/**
+ * Function used to genereate a new array of translations and  add a new translation.
+ * @param {Object} user 
+ * @param {String} text 
+ * @returns New array with modified translation elements
+ */
 export function generateNewTranslations (user, text) {
 
     let translations = user.translations;
