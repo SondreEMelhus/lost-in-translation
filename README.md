@@ -5,7 +5,7 @@ Lost in translation is an online sign language translator. The translator takes 
 
 ## Install
 - Clone the git repository and install the application using Node with the command npm install. 
-- In terminal type: npm install react-hook-forms
+- In terminal type: npm install react-hook-form
 
 ## Usage
 The application can be used from the link: https://lost-in-translation2.herokuapp.com/. It can also be runned locally using the command npm start.
