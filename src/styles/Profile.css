@@ -55,6 +55,7 @@
 .x-button{
     border-style: none;
     background-color: white;
+    cursor: pointer;
 }
 .logOut{
     margin-top: 20%;
