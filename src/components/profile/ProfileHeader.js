@@ -1,4 +1,7 @@
+/**Component used to render the profile header. Contains a render function that renders a 
+ *custom welcome message, and explains how the translation history in Profile works.*/
 const ProfileHeader = ({ username, translations }) => {
+    
     return (
         <header>
             <h4>Welcome to your profile {username}.</h4>

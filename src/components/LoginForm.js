@@ -5,11 +5,39 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import '../styles/LogIn.css'
 
+/**
+ * Constant used to define the minumum requirements for a valid username
+ * @ required : States wheter a username can be null
+ * @ minLength : States the minimum length of a username
+ */
 const usernameConfig = {
     required: true,
     minLength: 2
 }
 
+/** 
+ * @Component
+ * Component used to handle the user login. 
+ * 
+ * Hooks:
+ *  - useForm : Hook from react-forms used to create and handle a user submit form.
+ *  - useUser : Used to retrive and set the state of the current user.
+ *  - useNavigate: Used to navigate to a "new page" when the user has logged in
+ *  - useEffect : Used to automaticallu redirect to new page if the user already 
+ *                has a valid state
+ * 
+ * States:
+ *  - loading : (Boolean ): Used to manage the state of the current login process
+ *  - apiError: (String) : Used to manage the error message recived from API requests
+ * 
+ * Event handlers:
+ *  - onSubmit : Responsible for handling submissions of usernames, 
+ *               making API request and changing the state of the current user.
+ * 
+ * Render functions:
+ *  - errorMessage: Renders error messages related to the usernameConfig
+ *  @return Renders the username input field and submit button 
+ */
 const LoginForm = () => {
 
     //Hooks
@@ -17,18 +45,24 @@ const LoginForm = () => {
     const { user, setUser } = useUser();
     const navigate = useNavigate();
 
+
     //Local state
+
     const [ loading, setLoading ] = useState(false);
     const [ apiError, setApiError ] = useState(null)
 
+
     //Side effect
+
     useEffect (()=> {
         if (user !== null) {
             navigate('Translator')
         }
     }, [ user, navigate ])
 
-    //Evet handlers
+
+    //Event handlers
+
     const onSubmit = async ({ username }) => {
         setLoading(true);
         const [error, userResponse] = await loginUser(username);
@@ -44,6 +78,7 @@ const LoginForm = () => {
 
 
     //Render functions
+
     const errorMessage = (() => {
         if (!errors.username) {
             return null;
