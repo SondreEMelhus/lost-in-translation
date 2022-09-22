@@ -36,9 +36,7 @@ import { storeUserLocaly } from '../components/UserAPI'
 
 function Translator (props) {
 
-
     const { user, setUser } = useUser();
-    
     const [text, setText] = useState('');
     const [translating, setTranslating] = useState(false);
     const [error, setError] = useState();
@@ -67,6 +65,10 @@ function Translator (props) {
         }
     }
 
+    /**
+     * presents input text as symbols of sign language
+     * @param {*} event 
+     */
     const handleSubmit = (event) => {
         setTranslating(true);
         event.preventDefault();
@@ -74,7 +76,6 @@ function Translator (props) {
         var imageParent = document.getElementById("translationBox");
         imageParent.innerHTML = ""; // removes any previous translation elements
         for (let char of text) {
-            // TODO deal with whitespaces
             if (/^[a-z]+$/i.test(char)) { // checks if the character is a letter between a-z
                 char = char.toLowerCase();
                 var image = document.createElement("img");
@@ -94,6 +95,11 @@ function Translator (props) {
         setText(event.target.value);
     }
 
+    /**
+     * gets the path to the sign image that correspons to a letter
+     * @param {*} char a letter
+     * @returns path to the sign image
+     */
     function getImgPath(char) {
         let path = "";
         switch(char) {
