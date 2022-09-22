@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import '../styles/index.css'
 import '../styles/Translator.css'
 import a from '../assets/individial_signs/a.png'

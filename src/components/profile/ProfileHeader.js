@@ -1,4 +1,5 @@
-import ProfileActions from "./profile/ProfileActions";
+import ProfileActions from './ProfileActions';
+
 /**Component used to render the profile header. Contains a render function that renders a 
  *custom welcome message, and explains how the translation history in Profile works.*/
 const ProfileHeader = ({ username, translations }) => {

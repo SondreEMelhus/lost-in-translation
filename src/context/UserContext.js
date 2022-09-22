@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, createContext}  from "react";
+import React, { useContext, useState, createContext}  from "react";
 import { retriveUserLocaly } from "../components/UserAPI";
 
 const UserContext = createContext();
