@@ -10,9 +10,6 @@
 
 }
 
-.profile-item {
-
-}
 
 .user-item {
     margin-top: 1%;
@@ -39,10 +36,26 @@
     padding-bottom: 1%;
     border: 2px solid rgb(91, 83, 83);
     border-radius: 5px;
-    text-align: left;
+    display: flex;
 }
-.buttonBox{
-    margin-top: 100%;
-    margin-left: 80%;
-    
+
+.historyOutput {
+    width: 350px;
+}
+.translation-nr{
+    margin-left: 10px;
+}
+
+.translation-grid{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.x-button{
+    border-style: none;
+    background-color: white;
+}
+.logOut{
+    margin-top: 20%;
 }

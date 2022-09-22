@@ -1,6 +1,8 @@
 import { deleteUserLocaly } from "../UserAPI";
 import { useUser } from "../../context/UserContext";
 import { clearTranslations } from "../TranslationHandler";
+import '../../styles/Profile.css'
+
 
 const ProfileActions = () => {
 
@@ -19,7 +21,7 @@ const ProfileActions = () => {
     }
 
     return (
-        <div>
+        <div className="logOut">
             <button className="standardButton" onClick={ handleLogoutClick }>Log out</button>
         </div>
 

@@ -14,8 +14,8 @@ function Profile () {
     return (
         <div className="profile-container">
             <ProfileHeader username = { user.username } translations = { user.translations } />
-            <ProfileActions />
             <ProfileTranslationHistory user = { user } setUser = { setUser } />
+            <ProfileActions />
         </div>
     )
 }
