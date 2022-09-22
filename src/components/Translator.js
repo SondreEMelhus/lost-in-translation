@@ -36,19 +36,21 @@ import { storeUserLocaly } from '../components/UserAPI'
 
 function Translator (props) {
 
-
+    //Hook
     const { user, setUser } = useUser();
-    
+
+    //States
     const [text, setText] = useState('');
-    //Kan se om jeg kan fjerne denne
     const [translating, setTranslating] = useState(false);
     const [error, setError] = useState();
 
+    //Side effect
     useEffect (()=> {
         console.log('User has changed', user);
         console.log(user.translations);
     }, [ user ])
 
+    //Event handlers
     const storeTranslation = async () => {
         console.log(text);
         if (text == '') {
