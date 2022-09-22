@@ -1,5 +1,4 @@
 import React from "react"
-//Kan være jeg må bruke setUser(retriveUserLocaly)
 import '../styles/Profile.css'
 import { useUser } from "../context/UserContext";
 import withAuth from "../hoc/withAuth";
@@ -30,9 +29,13 @@ function Profile () {
     //Render function
     return (
         <div className="profile-container">
+            <div className="profileHistory">
             <ProfileHeader username = { user.username } translations = { user.translations } />
-            <ProfileActions />
             <ProfileTranslationHistory user = { user } setUser = { setUser } />
+            </div>
+            <div className="logOut">
+            <ProfileActions />
+            </div>
         </div>
     )
 }

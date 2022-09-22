@@ -9,6 +9,7 @@
     border-radius: 40px;
     text-align: left;
     border: white;
+    margin-right: -4px;
 }
 .inputs{
     height: 150px;

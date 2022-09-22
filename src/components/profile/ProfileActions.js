@@ -1,9 +1,11 @@
 import { deleteUserLocaly } from "../UserAPI";
 import { useUser } from "../../context/UserContext";
 import { clearTranslations } from "../TranslationHandler";
+import '../../styles/Profile.css'
 
 /**Component responsible for handling a user log out log out action.*/
 const ProfileActions = ({ logout }) => {
+
 
     //Hook used to retrive a the state of a user
     const {user, setUser} = useUser();
@@ -25,9 +27,7 @@ const ProfileActions = ({ logout }) => {
 
     //Renders the log out button
     return (
-        <div>
-            <button onClick={ handleLogoutClick }>Log out</button>
-        </div>
+            <button className="standardButton" onClick={ handleLogoutClick }>Log out</button>
 
     )
 }

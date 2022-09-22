@@ -17,6 +17,7 @@ function LogIn () {
     return (
         <div className='logInStyle'>
             <h1 className='pageTitle'>Lost in translation</h1>
+            <p className="getStarted">Get started</p>
             <LoginForm />
         </div>
     )

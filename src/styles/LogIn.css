@@ -6,6 +6,7 @@ input {
     border-radius: 40px;
     text-align: left;
     border-style: none;
+    margin-right: 10px;
 }
 
 .grid-field {
@@ -15,6 +16,8 @@ input {
 }
 .logInStyle{
     padding-top: 50px;
+    padding-left: 25%;
+    padding-right: 25%;
     background-color: var(--primaryColor);
     height: 300px;
 }
@@ -25,12 +28,11 @@ input {
 .getStarted{
     font-size: large;
 }
-
-.title {
-    margin-left: 39%;
-    font-size:x-large;
+.pageTitle{
+    font-size: xx-large;
     font-family:'Love Ya Like A Sister', cursive;
 }
-.pageTitle{
-    margin-bottom: -20px;
+.fieldSet{
+    border-style: none;
+    margin-left: -15px;
 }
