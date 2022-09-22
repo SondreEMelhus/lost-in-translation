@@ -1,5 +1,4 @@
 import React from "react"
-//Kan være jeg må bruke setUser(retriveUserLocaly)
 import '../styles/Profile.css'
 import { useUser } from "../context/UserContext";
 import withAuth from "../hoc/withAuth";
@@ -22,7 +21,7 @@ import ProfileTranslationHistory from "./profile/ProfileTranslationHistory";
  */
 function Profile () {
 
-    
+
     //Hooks
     const { user, setUser } = useUser();
 
