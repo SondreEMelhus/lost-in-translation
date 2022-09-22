@@ -1,6 +1,7 @@
 import { deleteUserLocaly } from "../UserAPI";
 import { useUser } from "../../context/UserContext";
 import { clearTranslations } from "../TranslationHandler";
+import '../../styles/Profile.css'
 
 /** 
  * @Component
@@ -18,6 +19,7 @@ import { clearTranslations } from "../TranslationHandler";
 const ProfileActions = ({ logout }) => {
 
     //Hook
+    
     const {user, setUser} = useUser();
 
 
@@ -37,9 +39,7 @@ const ProfileActions = ({ logout }) => {
 
     //Render function
     return (
-        <div>
-            <button onClick={ handleLogoutClick }>Log out</button>
-        </div>
+            <button className="standardButton" onClick={ handleLogoutClick }>Log out</button>
 
     )
 }

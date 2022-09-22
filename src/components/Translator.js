@@ -27,6 +27,7 @@ import w from '../assets/individial_signs/w.png'
 import x from '../assets/individial_signs/x.png'
 import y from '../assets/individial_signs/y.png'
 import z from '../assets/individial_signs/z.png'
+import space from '../assets/individial_signs/space.png'
 
 //Imports to store user translations
 import { useUser } from '../context/UserContext';
@@ -82,8 +83,6 @@ function Translator () {
         const newTranslations = generateNewTranslations(user, text);
 
         const [error, result] = await updateTranslation(user, newTranslations)
-        console.log('Error', error);
-        console.log('Result', result);
 
         if (error === null) {
             setUser(result);
@@ -93,6 +92,10 @@ function Translator () {
         }
     }
 
+    /**
+     * presents input text as symbols of sign language
+     * @param {*} event 
+     */
     const handleSubmit = (event) => {
         setTranslating(true);
         event.preventDefault();
@@ -100,15 +103,20 @@ function Translator () {
         var imageParent = document.getElementById("translationBox");
         imageParent.innerHTML = ""; // removes any previous translation elements
         for (let char of text) {
-            // TODO deal with whitespaces
-            if (/^[a-z]+$/i.test(char)) { // checks if the character is a letter between a-z
+            if (/^[a-z\s]+$/i.test(char)) { // checks if the character is a letter between a-z
                 char = char.toLowerCase();
                 var image = document.createElement("img");
                 image.className = "signImage";
                 image.alt = char;
                 image.src = getImgPath(char);
                 imageParent.appendChild(image);
-            }
+            } /*else if (char == ' ') {
+                var image = document.createElement("img");
+                image.className = "signImage";
+                image.alt = 'space';
+                image.src = getImgPath(space);
+                imageParent.appendChild(image);
+            }*/
         }
         setTranslating(false);
     }
@@ -203,8 +211,11 @@ function Translator () {
             case 'y':
                 path = y;
                 break;
-            default:
+            case 'z':
                 path = z;
+                break;
+            default:
+                path = space;
                 break;
           }
           return path;

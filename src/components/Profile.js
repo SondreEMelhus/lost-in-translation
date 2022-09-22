@@ -29,9 +29,13 @@ function Profile () {
     //Render function
     return (
         <div className="profile-container">
+            <div className="profileHistory">
             <ProfileHeader username = { user.username } translations = { user.translations } />
-            <ProfileActions />
             <ProfileTranslationHistory user = { user } setUser = { setUser } />
+            </div>
+            <div className="logOut">
+            <ProfileActions />
+            </div>
         </div>
     )
 }
