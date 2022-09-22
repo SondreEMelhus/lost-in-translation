@@ -15,8 +15,7 @@ import ProfileTranslationHistory from "./profile/ProfileTranslationHistory";
  * 
  * Render functions:
  * 
- * @return Renders {@link ProfileHeader} component, {@link ProfileActions} component 
- * and {@link ProfileTranslationHistory} component
+ * @return Renders {@link ProfileHeader} component and {@link ProfileTranslationHistory} component
  */
 function Profile () {
 
