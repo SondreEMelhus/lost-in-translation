@@ -1,4 +1,4 @@
-import { deleteUserLocaly } from "../UserAPI";
+import { deleteUserLocaly, storeUserLocaly } from "../UserAPI";
 import { useUser } from "../../context/UserContext";
 import { clearTranslations } from "../TranslationHandler";
 import '../../styles/Profile.css'
@@ -27,12 +27,19 @@ const ProfileActions = ({ logout }) => {
     //Event handler
     const handleLogoutClick = async () => {
         if (window.confirm('Are you sure?')) {
-            const [error, result] = await clearTranslations(user)
+            setUser(null);
+            deleteUserLocaly();
+        }
+    }
+
+    const handleClearHistory = async () => {
+        if (window.confirm('Are you sure want to clear your translation history?')) {
+            const [error, result] = await clearTranslations(user);
             if (error === null) {
-                setUser(null);
-                deleteUserLocaly();
+                setUser(result);
+                storeUserLocaly(result);
             } else {
-                alert('Unable to log out')
+                alert('Unable to clear your translation history')
             }
         }
     }
@@ -45,6 +52,7 @@ const ProfileActions = ({ logout }) => {
             <button className="standardButton">Back</button>
             </NavLink>
             <button className="standardButton" onClick={ handleLogoutClick }>Log out</button>
+            <button className="standardButton" onClick={ handleClearHistory }>Clear history</button>
         </div>
     )
 }

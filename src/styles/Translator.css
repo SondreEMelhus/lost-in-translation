@@ -12,7 +12,7 @@
     margin-right: -4px;
 }
 .inputs{
-    height: 150px;
+    height: 170px;
     background-color: var(--primaryColor);
     display: flex;
     width: 100%;
@@ -39,4 +39,8 @@
 .signImage {
     width: 70px;
     height: 70px;
+}
+
+.errorText {
+    color:white;
 }

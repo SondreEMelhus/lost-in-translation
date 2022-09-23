@@ -53,6 +53,7 @@ import { storeUserLocaly } from '../components/UserAPI'
  *  - handleSubmit : Responsible for handling submissions of user input for translation
  *  - handleInput : Responsible for updating the state of text when changes happen in 
  *                  translation input field
+ *  - validateInput : Responsible for validating user input
  *  
  * Functions: 
  *  - getImage : Responsible for retriving a image that that correlates to a given character      
@@ -73,6 +74,12 @@ function Translator () {
 
 
     //Event handlers
+    /**
+     * Function used to add a new translation to a user, and update that user via API PATCH
+     * request.
+     * 
+     * @returns Updated User object
+     */
     const storeTranslation = async () => {
         console.log(text);
         if (text == '') {
@@ -93,18 +100,35 @@ function Translator () {
     }
 
     /**
-     * presents input text as symbols of sign language
+     * Function used to valide a users input. Makes sure that a user can only submit
+     * alphabet characters, no number or special characters.
+     * @returns A boolean declaring the validity of the user input
+     */
+    const validateInput = () => {
+        for (let char of text) {
+            if (!/^[a-z\s]+$/i.test(char)) {
+                return false;
+            }
+        }
+        return true;
+    } 
+
+    /**
+     * Function used to handle submission of a users input for translation. 
+     * The function validates the input, adds the translation to the translation history 
+     * and updates the user. Then it parses the input and displays the corresponding
+     * images for each character.
      * @param {*} event 
      */
     const handleSubmit = (event) => {
         setTranslating(true);
         event.preventDefault();
-        storeTranslation()
-        var imageParent = document.getElementById("translationBox");
-        imageParent.innerHTML = ""; // removes any previous translation elements
-        let translationInput = text.substring(0, 40); // sets the translation to max 40 characters
-        for (let char of translationInput) {
-            if (/^[a-z\s]+$/i.test(char)) { // checks if the character is a letter between a-z or a space
+        if (validateInput()) {
+            storeTranslation();
+            var imageParent = document.getElementById("translationBox");
+            imageParent.innerHTML = ""; // removes any previous translation elements
+            let translationInput = text.substring(0, 40); // sets the translation to max 40 characters
+            for (let char of translationInput) {
                 char = char.toLowerCase();
                 var image = document.createElement("img");
                 image.className = "signImage";
@@ -112,10 +136,17 @@ function Translator () {
                 image.src = getImage(char);
                 imageParent.appendChild(image);
             }
+        } else {
+            setError('Invalid input (Only characters)')
         }
         setTranslating(false);
     }
 
+    /**
+     * Function used to handle any changes in the user input field.
+     * Also responsible for changing the state of the error message.
+     * @param {*} event 
+     */
     const handleInput = (event) => {
         if (error !== null) {
             setError(null);
@@ -124,7 +155,7 @@ function Translator () {
     }
 
     /**
-     * 
+     * Function used to finc a image corresponding to a given character.
      * @param {Character} char 
      * @returns Path to image corresponding to char
      */
@@ -234,7 +265,7 @@ function Translator () {
                     />
                     </label>
                     <input type="submit" className="standardButton" value="Submit"/>
-                    {error && <p>{error}</p>}
+                    {error && <p className="errorText">{error}</p>}
                 </form>
             </div>
             <div id="translationBox"></div>
