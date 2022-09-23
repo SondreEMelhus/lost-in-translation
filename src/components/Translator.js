@@ -108,7 +108,7 @@ function Translator () {
                 var image = document.createElement("img");
                 image.className = "signImage";
                 image.alt = char;
-                image.src = getImgPath(char);
+                image.src = getImage(char);
                 imageParent.appendChild(image);
             }
         }
@@ -127,7 +127,7 @@ function Translator () {
      * @param {Character} char 
      * @returns Path to image corresponding to char
      */
-    function getImgPath(char) {
+    function getImage(char) {
         let path = "";
         switch(char) {
             case 'a':
