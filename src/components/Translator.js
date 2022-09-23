@@ -110,13 +110,7 @@ function Translator () {
                 image.alt = char;
                 image.src = getImgPath(char);
                 imageParent.appendChild(image);
-            } /*else if (char == ' ') {
-                var image = document.createElement("img");
-                image.className = "signImage";
-                image.alt = 'space';
-                image.src = getImgPath(space);
-                imageParent.appendChild(image);
-            }*/
+            }
         }
         setTranslating(false);
     }
