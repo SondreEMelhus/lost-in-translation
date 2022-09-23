@@ -53,6 +53,7 @@ import { storeUserLocaly } from '../components/UserAPI'
  *  - handleSubmit : Responsible for handling submissions of user input for translation
  *  - handleInput : Responsible for updating the state of text when changes happen in 
  *                  translation input field
+ *  - validateInput : Responsible for validating user input
  *  
  * Functions: 
  *  - getImage : Responsible for retriving a image that that correlates to a given character      
@@ -73,6 +74,12 @@ function Translator () {
 
 
     //Event handlers
+    /**
+     * Function used to add a new translation to a user, and update that user via API PATCH
+     * request.
+     * 
+     * @returns Updated User object
+     */
     const storeTranslation = async () => {
         console.log(text);
         if (text == '') {
@@ -92,6 +99,11 @@ function Translator () {
         }
     }
 
+    /**
+     * Function used to valide a users input. Makes sure that a user can only submit
+     * alphabet characters, no number or special characters.
+     * @returns A boolean declaring the validity of the user input
+     */
     const validateInput = () => {
         for (let char of text) {
             if (!/^[a-z\s]+$/i.test(char)) {
@@ -102,7 +114,10 @@ function Translator () {
     } 
 
     /**
-     * presents input text as symbols of sign language
+     * Function used to handle submission of a users input for translation. 
+     * The function validates the input, adds the translation to the translation history 
+     * and updates the user. Then it parses the input and displays the corresponding
+     * images for each character.
      * @param {*} event 
      */
     const handleSubmit = (event) => {
@@ -127,6 +142,11 @@ function Translator () {
         setTranslating(false);
     }
 
+    /**
+     * Function used to handle any changes in the user input field.
+     * Also responsible for changing the state of the error message.
+     * @param {*} event 
+     */
     const handleInput = (event) => {
         if (error !== null) {
             setError(null);
@@ -135,7 +155,7 @@ function Translator () {
     }
 
     /**
-     * 
+     * Function used to finc a image corresponding to a given character.
      * @param {Character} char 
      * @returns Path to image corresponding to char
      */
