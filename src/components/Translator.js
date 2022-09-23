@@ -92,6 +92,15 @@ function Translator () {
         }
     }
 
+    const validateInput = () => {
+        for (let char of text) {
+            if (!/^[a-z\s]+$/i.test(char)) {
+                return false;
+            }
+        }
+        return true;
+    } 
+
     /**
      * presents input text as symbols of sign language
      * @param {*} event 
@@ -99,12 +108,12 @@ function Translator () {
     const handleSubmit = (event) => {
         setTranslating(true);
         event.preventDefault();
-        storeTranslation()
-        var imageParent = document.getElementById("translationBox");
-        imageParent.innerHTML = ""; // removes any previous translation elements
-        let translationInput = text.substring(0, 40); // sets the translation to max 40 characters
-        for (let char of translationInput) {
-            if (/^[a-z\s]+$/i.test(char)) { // checks if the character is a letter between a-z or a space
+        if (validateInput()) {
+            storeTranslation();
+            var imageParent = document.getElementById("translationBox");
+            imageParent.innerHTML = ""; // removes any previous translation elements
+            let translationInput = text.substring(0, 40); // sets the translation to max 40 characters
+            for (let char of translationInput) {
                 char = char.toLowerCase();
                 var image = document.createElement("img");
                 image.className = "signImage";
@@ -112,6 +121,8 @@ function Translator () {
                 image.src = getImage(char);
                 imageParent.appendChild(image);
             }
+        } else {
+            setError('Invalid input (Only characters)')
         }
         setTranslating(false);
     }
@@ -234,7 +245,7 @@ function Translator () {
                     />
                     </label>
                     <input type="submit" className="standardButton" value="Submit"/>
-                    {error && <p>{error}</p>}
+                    {error && <p className="errorText">{error}</p>}
                 </form>
             </div>
             <div id="translationBox"></div>
