@@ -2,6 +2,7 @@ import { deleteUserLocaly } from "../UserAPI";
 import { useUser } from "../../context/UserContext";
 import { clearTranslations } from "../TranslationHandler";
 import '../../styles/Profile.css'
+import { NavLink } from "react-router-dom";
 
 /** 
  * @Component
@@ -39,8 +40,12 @@ const ProfileActions = ({ logout }) => {
 
     //Render function
     return (
+        <div className="buttons">
+            <NavLink to="/Translator">
+            <button className="standardButton">Back</button>
+            </NavLink>
             <button className="standardButton" onClick={ handleLogoutClick }>Log out</button>
-
+        </div>
     )
 }
 

@@ -20,7 +20,6 @@
     padding-bottom: 3%;
     border: 2px solid rgb(91, 83, 83);
     border-radius: 5px;
-
 }
 
 .history-item {
@@ -63,7 +62,10 @@
     margin-right: 2%;
 }
 .logOut{
-    display: flex;
-    justify-content: space-around;
     margin-top: 20%;
+}
+.buttons{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 2%;
 }
