@@ -5,6 +5,7 @@
     position:fixed;
     height: 30px;
     background-color: var(--primaryColor);
+    color: white;
     display: flex;
     justify-content: end;
 }

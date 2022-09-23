@@ -20,6 +20,7 @@ input {
     padding-right: 25%;
     background-color: var(--primaryColor);
     height: 300px;
+    color: white;
 }
 
 .grid-container{
