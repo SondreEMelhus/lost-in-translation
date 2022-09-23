@@ -102,8 +102,9 @@ function Translator () {
         storeTranslation()
         var imageParent = document.getElementById("translationBox");
         imageParent.innerHTML = ""; // removes any previous translation elements
-        for (let char of text) {
-            if (/^[a-z\s]+$/i.test(char)) { // checks if the character is a letter between a-z
+        let translationInput = text.substring(0, 40); // sets the translation to max 40 characters
+        for (let char of translationInput) {
+            if (/^[a-z\s]+$/i.test(char)) { // checks if the character is a letter between a-z or a space
                 char = char.toLowerCase();
                 var image = document.createElement("img");
                 image.className = "signImage";
