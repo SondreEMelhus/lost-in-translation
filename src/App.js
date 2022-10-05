@@ -7,6 +7,7 @@ import Translator from './components/Translator';
 import Profile from './components/Profile';
 import Footer from './components/Footer';
 
+//Comment
 export function App () {
 
     return (
